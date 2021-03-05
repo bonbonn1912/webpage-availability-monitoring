@@ -21,6 +21,10 @@ socket.on("InitData", function({statusCode, index, LastTime}){
     changeStatusCode(statusCode, index,LastTime)
  //   console.log("Websocket Anfrage erhalten");
    })
+   socket.on("communicate", function(){
+    console.log("PING");
+   
+})
    
 
 function changeStatusCode(statusCode, index, GlobalTime){

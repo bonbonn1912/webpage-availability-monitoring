@@ -8,7 +8,7 @@ var httpServer = http.createServer(app);
 var io = require("socket.io")(httpServer);
 
 const PORT = process.env.PORT || 8080;
-const PollRate = 180000;
+const PollRate = 5000;
 
 var GlobalTime;
 var LastTime;
@@ -33,6 +33,7 @@ var URls = [
 ];
 
 var URlStatus = [];
+
 
 setInterval(() => {
   URls.forEach((element) => {
@@ -64,6 +65,9 @@ function getTimeInHMS() {
 }
 
 io.on("connection", function (socket) {
+  setInterval(() =>{
+   socket.emit("communicate")
+  },1000)
   socket.on("Initialfetch", function (message) {
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
