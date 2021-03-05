@@ -6,6 +6,8 @@ var app = express();
 var httpServer = http.createServer(app);
 
 var io = require("socket.io")(httpServer);
+
+const PollRate = 5000;
 var GlobalTime;
 var LastTime;
 
@@ -20,6 +22,12 @@ var URls = [
   "https://www.google.de",
   "https://www.bild.de",
   "https://www.facebook.com",
+  "https://www.twitch.tv",
+  "https://www.linkedin.com",
+  "https://www.twitter.com",
+  "https://www.instagram.com",
+  "https://www.faceit.com",
+  "https://www.faz.net/aktuell/"
 ];
 
 var URlStatus = [];
@@ -28,7 +36,7 @@ setInterval(() => {
   URls.forEach((element) => {
     getResponseCode(element, URls.indexOf(element) + 1);
   });
-}, 5000);
+}, PollRate);
 
 function getResponseCode(url, numberof) {
   
@@ -42,7 +50,7 @@ setInterval(() =>{
   GlobalTime = getTimeInHMS()
   LastTime = GlobalTime;
  // console.log("SerrverZeit: " +GlobalTime);
-},5000)
+},PollRate)
 
 function getTimeInHMS(){
   var date = new Date();
@@ -70,7 +78,7 @@ io.on("connection", function (socket) {
       socket.emit("UpdateURL", { statusCode, index, GlobalTime });
       console.log("Lastime zugewiesne auf: "+LastTime)
     }
-  }, 5000);
+  }, PollRate);
 });
 
 io.on("SendToServer", function(socket){
