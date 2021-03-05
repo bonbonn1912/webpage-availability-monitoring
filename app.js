@@ -43,6 +43,7 @@ setInterval(() => {
 function getResponseCode(url, numberof) {
   https.get(url, function (res) {
     URlStatus[numberof - 1] = res.statusCode;
+   
     // console.log( "URL: "+numberof+ "   Statuscode: "+URlStatus[numberof-1])
   });
 }
