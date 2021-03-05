@@ -1,9 +1,1 @@
-runtime: nodejs14
-env: flex 
-
-
-manual_scaling:
-  instances: 1
-
-network:
-  session_affinity: true
+runtime: nodejs12
