@@ -7,7 +7,7 @@ var httpServer = http.createServer(app);
 
 var io = require("socket.io")(httpServer);
 
-const PollRate = 5000;
+const PollRate = 60000;
 var GlobalTime;
 var LastTime;
 
