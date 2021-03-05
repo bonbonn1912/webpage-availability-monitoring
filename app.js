@@ -35,7 +35,17 @@ function getResponseCode(url, numberof) {
   });
 }
 
+
+
 io.on("connection", function (socket) {
+  socket.on("Initialfetch", function (message) {
+    for (i = 0; i < URls.length; i++) {
+      var index = i + 1;
+      var statusCode = URlStatus[i];
+      socket.emit("UpdateURL", { statusCode, index });
+    }
+  });
+  
   setInterval(() => {
     var i;
     for (i = 0; i < URls.length; i++) {

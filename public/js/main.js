@@ -1,4 +1,4 @@
-const socket = io();
+var socket = io.connect("http://localhost:3000");
 
 // Zugriff auf die Elemente der Seite 
 const TargetURL = document.querySelectorAll(".statusMessage");
@@ -12,13 +12,13 @@ function getTimeInHMS(){
 
 }
 
+
 // Wird ausgeführt sobald eine Verbindung aufgebaut wird
 socket.on("connect", function(){
-    
+    socket.emit("Initialfetch");
     console.log("User connected");
 })
 
-socket.emit("SendToServer");
 
 
 
