@@ -6,6 +6,8 @@ var app = express();
 var httpServer = http.createServer(app);
 
 var io = require("socket.io")(httpServer);
+var GlobalTime;
+var LastTime;
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -35,6 +37,16 @@ function getResponseCode(url, numberof) {
   });
 }
 
+setInterval(() =>{
+  GlobalTime = getTimeInHMS()
+  console.log("SerrverZeit: " +GlobalTime);
+},1000)
+
+function getTimeInHMS(){
+  var date = new Date();
+  var string = date.toLocaleTimeString([], {hour : '2-digit', minute: '2-digit', second: '2-digit'});
+  return string;
+}
 
 
 io.on("connection", function (socket) {
@@ -42,7 +54,8 @@ io.on("connection", function (socket) {
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
       var statusCode = URlStatus[i];
-      socket.emit("UpdateURL", { statusCode, index });
+      socket.emit("InitData", { statusCode, index, LastTime });
+      console.log("übermittelte Lastime " +LastTime);
     }
   });
   
@@ -51,7 +64,9 @@ io.on("connection", function (socket) {
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
       var statusCode = URlStatus[i];
-      socket.emit("UpdateURL", { statusCode, index });
+      LastTime = GlobalTime;
+      socket.emit("UpdateURL", { statusCode, index, GlobalTime });
+      console.log("Client-Zeit in Durchlauf:"+i+ "  "+GlobalTime)
     }
   }, 6000);
 });
