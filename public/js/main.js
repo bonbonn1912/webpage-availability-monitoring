@@ -1,8 +1,10 @@
 var socket = io();
 
 // Zugriff auf die Elemente der Seite 
+const TargetBox = document.querySelectorAll("#Box");
 const TargetURL = document.querySelectorAll(".statusMessage");
 const TargetTime = document.querySelectorAll(".timeMessage");
+
 
 // Wird ausgeführt sobald eine Verbindung aufgebaut wird
 socket.on("connect", function(){
@@ -12,13 +14,13 @@ socket.on("connect", function(){
 
 
 
-socket.on("UpdateURL", function({statusCode, index, GlobalTime}){
- changeStatusCode(statusCode, index, GlobalTime)
+socket.on("UpdateURL", function({statusCode, index, GlobalTime, color}){
+ changeStatusCode(statusCode, index, GlobalTime,color)
 // console.log("Websocket Anfrage erhalten");
 })
 
-socket.on("InitData", function({statusCode, index, LastTime}){
-    changeStatusCode(statusCode, index,LastTime)
+socket.on("InitData", function({statusCode, index, LastTime, color}){
+    changeStatusCode(statusCode, index,LastTime,color)
  //   console.log("Websocket Anfrage erhalten");
    })
    socket.on("communicate", function(){
@@ -27,9 +29,14 @@ socket.on("InitData", function({statusCode, index, LastTime}){
 })
    
 
-function changeStatusCode(statusCode, index, GlobalTime){
-    
+function changeStatusCode(statusCode, index, GlobalTime,color){
+    changeBoxColor(color,index)
     TargetURL[index-1].innerHTML = "Statuscode: "+statusCode;
     TargetTime[index-1].innerHTML = GlobalTime;
+}
+
+function changeBoxColor(color,index){
+     console.log("Index: "+index +" Farbe: "+color);
+    TargetBox[index-1].style.backgroundColor = color;
 }
 console.log("Main.js geladen");

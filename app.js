@@ -8,7 +8,7 @@ var httpServer = http.createServer(app);
 var io = require("socket.io")(httpServer);
 
 const PORT = process.env.PORT || 8080;
-const PollRate = 60000;
+const PollRate = 25000;
 
 var GlobalTime;
 var LastTime;
@@ -23,6 +23,7 @@ app.get("/", function (req, res) {
 var URls = [
   "https://www.google.de",
   "https://www.bild.de",
+  //"https://www.dominikw.de/dqwdq.html",
   "https://www.facebook.com",
   "https://www.twitch.tv",
   "https://www.linkedin.com",
@@ -34,7 +35,6 @@ var URls = [
 
 var URlStatus = [];
 
-
 setInterval(() => {
   URls.forEach((element) => {
     getResponseCode(element, URls.indexOf(element) + 1);
@@ -44,8 +44,6 @@ setInterval(() => {
 function getResponseCode(url, numberof) {
   https.get(url, function (res) {
     URlStatus[numberof - 1] = res.statusCode;
-   
-    // console.log( "URL: "+numberof+ "   Statuscode: "+URlStatus[numberof-1])
   });
 }
 
@@ -65,31 +63,72 @@ function getTimeInHMS() {
 }
 
 io.on("connection", function (socket) {
-  setInterval(() =>{
-   socket.emit("communicate")
-  },1000)
+  setInterval(() => {
+    socket.emit("communicate");
+  }, 1000);
   socket.on("Initialfetch", function (message) {
     for (i = 0; i < URls.length; i++) {
-      var index = i + 1;
+      var index = i;
       var statusCode = URlStatus[i];
-      socket.emit("InitData", { statusCode, index, LastTime });
-     // console.log("übermittelte Lastime " + LastTime);
+    
+      color = setResponseColor(URlStatus[i])
+      index++;
+      socket.emit("InitData", { statusCode, index, LastTime, color });
+     
     }
   });
 
-  setInterval(() => {
+  
+
+
+setInterval(() => {
     var i;
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
       var statusCode = URlStatus[i];
-
-      socket.emit("UpdateURL", { statusCode, index, GlobalTime });
-     // console.log("Lastime zugewiesne auf: " + LastTime);
+      var color = setResponseColor(URlStatus[i])
+      socket.emit("UpdateURL", { statusCode, index, GlobalTime, color });
+      
     }
   }, PollRate);
 });
 
-//Server wird gestartet
+function setResponseColor(responseCode){
+var color;
+switch(responseCode){
+  case 200 : color = "green"
+  break;
+  case 201: color = "green"
+  break;
+  case 202 : color = "green"
+  break;
+  case 203 : color = "green"
+  break;
+  case 300 : color = "green"
+  break;
+  case 301 : color = "green"
+  break;
+  case 302 : color = "green"
+  break;
+  case 400 : color = "red"
+  break;
+  case 401: color = "red"
+  break;
+  case 402 : color = "red"
+  break;
+  case 403 : color = "red"
+  break;
+  case 404 : color = "red"
+  break;
+  case 500 : color = "red"
+  break;
+  case 501 : color = "red"
+  break;
+  case 502 : color = "red"
+  break;
+}
+return color; 
+}
 
 httpServer.listen(PORT, function () {
   console.log("Server listening on Port: " + PORT);
