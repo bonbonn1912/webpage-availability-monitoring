@@ -28,35 +28,27 @@ setInterval(() => {
   });
 }, 5000);
 
-
 function getResponseCode(url, numberof) {
   https.get(url, function (res) {
-    URlStatus[numberof-1] = res.statusCode;
-   // console.log( "URL: "+numberof+ "   Statuscode: "+URlStatus[numberof-1])
-    });
+    URlStatus[numberof - 1] = res.statusCode;
+    // console.log( "URL: "+numberof+ "   Statuscode: "+URlStatus[numberof-1])
+  });
 }
 
 io.on("connection", function (socket) {
-
-  setInterval(() =>{
-   
-
-     
-     var i;
-     for(i = 0; i < URls.length; i++){
-         var index = i+1;
-         var statusCode = URlStatus[i];
-         socket.emit("UpdateURL", { statusCode, index });
-     }
-     
-       
-     
-   
-  },6000)
-  
+  setInterval(() => {
+    var i;
+    for (i = 0; i < URls.length; i++) {
+      var index = i + 1;
+      var statusCode = URlStatus[i];
+      socket.emit("UpdateURL", { statusCode, index });
+    }
+  }, 6000);
 });
 
-
+io.on("SendToServer", function(socket){
+    console.log("nachricht wurde von server an user gesendet");
+});
 
 //Server wird gestartet
 

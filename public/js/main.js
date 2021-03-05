@@ -5,9 +5,6 @@ const TargetURL = document.querySelectorAll(".statusMessage");
 const TargetTime = document.querySelectorAll(".timeMessage");
 
 
-
-
-
 function getTimeInHMS(){
     var date = new Date();
     var string = date.toLocaleTimeString([], {hour : '2-digit', minute: '2-digit', second: '2-digit'});
@@ -17,9 +14,12 @@ function getTimeInHMS(){
 
 // Wird ausgeführt sobald eine Verbindung aufgebaut wird
 socket.on("connect", function(){
-
+    
     console.log("User connected");
 })
+
+socket.emit("SendToServer");
+
 
 
 
