@@ -1,4 +1,4 @@
-var socket = io.connect("http://localhost:3000");
+var socket = io();
 
 // Zugriff auf die Elemente der Seite 
 const TargetURL = document.querySelectorAll(".statusMessage");
@@ -14,12 +14,12 @@ socket.on("connect", function(){
 
 socket.on("UpdateURL", function({statusCode, index, GlobalTime}){
  changeStatusCode(statusCode, index, GlobalTime)
- console.log("Websocket Anfrage erhalten");
+// console.log("Websocket Anfrage erhalten");
 })
 
 socket.on("InitData", function({statusCode, index, LastTime}){
     changeStatusCode(statusCode, index,LastTime)
-    console.log("Websocket Anfrage erhalten");
+ //   console.log("Websocket Anfrage erhalten");
    })
    
 

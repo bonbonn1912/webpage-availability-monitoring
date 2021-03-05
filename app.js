@@ -7,7 +7,9 @@ var httpServer = http.createServer(app);
 
 var io = require("socket.io")(httpServer);
 
-const PollRate = 180000;
+const PORT = process.env.PORT || 8080;
+const PollRate = 6000;
+
 var GlobalTime;
 var LastTime;
 
@@ -83,7 +85,7 @@ io.on("connection", function (socket) {
 });
 
 //Server wird gestartet
-let PORT = 3000;
+
 httpServer.listen(PORT, function () {
   console.log("Server listening on Port: " + PORT);
 });
