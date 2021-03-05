@@ -27,7 +27,7 @@ var URls = [
   "https://www.twitter.com",
   "https://www.instagram.com",
   "https://www.faceit.com",
-  "https://www.faz.net/aktuell/"
+  "https://www.faz.net/aktuell/",
 ];
 
 var URlStatus = [];
@@ -39,25 +39,26 @@ setInterval(() => {
 }, PollRate);
 
 function getResponseCode(url, numberof) {
-  
   https.get(url, function (res) {
     URlStatus[numberof - 1] = res.statusCode;
     // console.log( "URL: "+numberof+ "   Statuscode: "+URlStatus[numberof-1])
   });
 }
 
-setInterval(() =>{
-  GlobalTime = getTimeInHMS()
+setInterval(() => {
+  GlobalTime = getTimeInHMS();
   LastTime = GlobalTime;
- // console.log("SerrverZeit: " +GlobalTime);
-},PollRate)
+}, PollRate);
 
-function getTimeInHMS(){
+function getTimeInHMS() {
   var date = new Date();
-  var string = date.toLocaleTimeString([], {hour : '2-digit', minute: '2-digit', second: '2-digit'});
+  var string = date.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
   return string;
 }
-
 
 io.on("connection", function (socket) {
   socket.on("Initialfetch", function (message) {
@@ -65,28 +66,23 @@ io.on("connection", function (socket) {
       var index = i + 1;
       var statusCode = URlStatus[i];
       socket.emit("InitData", { statusCode, index, LastTime });
-      console.log("übermittelte Lastime " +LastTime);
+     // console.log("übermittelte Lastime " + LastTime);
     }
   });
-  
+
   setInterval(() => {
     var i;
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
       var statusCode = URlStatus[i];
-      
+
       socket.emit("UpdateURL", { statusCode, index, GlobalTime });
-      console.log("Lastime zugewiesne auf: "+LastTime)
+     // console.log("Lastime zugewiesne auf: " + LastTime);
     }
   }, PollRate);
 });
 
-io.on("SendToServer", function(socket){
-    console.log("nachricht wurde von server an user gesendet");
-});
-
 //Server wird gestartet
-
 let PORT = 3000;
 httpServer.listen(PORT, function () {
   console.log("Server listening on Port: " + PORT);
