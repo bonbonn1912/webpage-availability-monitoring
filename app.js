@@ -31,6 +31,7 @@ setInterval(() => {
 }, 5000);
 
 function getResponseCode(url, numberof) {
+  
   https.get(url, function (res) {
     URlStatus[numberof - 1] = res.statusCode;
     // console.log( "URL: "+numberof+ "   Statuscode: "+URlStatus[numberof-1])
@@ -39,8 +40,9 @@ function getResponseCode(url, numberof) {
 
 setInterval(() =>{
   GlobalTime = getTimeInHMS()
-  console.log("SerrverZeit: " +GlobalTime);
-},1000)
+  LastTime = GlobalTime;
+ // console.log("SerrverZeit: " +GlobalTime);
+},5000)
 
 function getTimeInHMS(){
   var date = new Date();
@@ -64,11 +66,11 @@ io.on("connection", function (socket) {
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
       var statusCode = URlStatus[i];
-      LastTime = GlobalTime;
+      
       socket.emit("UpdateURL", { statusCode, index, GlobalTime });
-      console.log("Client-Zeit in Durchlauf:"+i+ "  "+GlobalTime)
+      console.log("Lastime zugewiesne auf: "+LastTime)
     }
-  }, 6000);
+  }, 5000);
 });
 
 io.on("SendToServer", function(socket){
