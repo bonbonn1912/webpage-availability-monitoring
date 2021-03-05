@@ -8,7 +8,7 @@ var httpServer = http.createServer(app);
 var io = require("socket.io")(httpServer);
 
 const PORT = process.env.PORT || 8080;
-const PollRate = 25000;
+const PollRate = 60000;
 
 var GlobalTime;
 var LastTime;
@@ -23,8 +23,8 @@ app.get("/", function (req, res) {
 var URls = [
   "https://www.google.de",
   "https://www.bild.de",
-  //"https://www.dominikw.de/dqwdq.html",
-  "https://www.facebook.com",
+  "https://www.dominikw.de/dqwdq.html",
+ // "https://www.facebook.com",
   "https://www.twitch.tv",
   "https://www.linkedin.com",
   "https://www.twitter.com",

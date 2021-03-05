@@ -1,4 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+body {
+  width: 99%;
+  height: 99%;
+  background: lightblue;
+
+}
+
+.wrapper {
+  background: lightblue;
+  width: 100%;
+  height: 100%;
+  
+ 
+}
+
 .content {
+ 
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -6,12 +24,27 @@
   width: 100%;
   height: 100%;
 }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: lightblue;
+  color: black;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
 
-#Box{
+
+
+#Box {
   background-color: gray;
 }
 
 .boxes {
+  font-family: "Roboto", sans-serif;
+  font-size: 35px;
+  color: white;
   width: 200px;
   height: 120px;
   background-color: green;
@@ -23,22 +56,27 @@
 }
 
 .box-frame {
- margin-top: 25px;
- margin-right: 50px;
- margin-left: 50px;
- flex-direction: column;
- width: 200px;
- height: 180px;
- background-color: gray;
- border-radius: 5%
+  filter: drop-shadow(10px 4px 10px gray);
+  margin-top: 80px;
+  margin-right: 40px;
+  margin-left: 40px;
+  flex-direction: column;
+  width: 200px;
+  height: 180px;
+  background-color: gray;
+  border-radius: 5%;
 }
 
-.statusMessage{
-    text-align: center;
-    margin-top: 5px ;
+.statusMessage {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: white;
+  margin-top: 7px;
 }
 
-.timeMessage{
-    text-align: center;
-    margin-top: -3px;
+.timeMessage {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin-top: -10px;
 }
