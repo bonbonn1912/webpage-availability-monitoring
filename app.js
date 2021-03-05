@@ -8,7 +8,7 @@ var httpServer = http.createServer(app);
 var io = require("socket.io")(httpServer);
 
 const PORT = process.env.PORT || 8080;
-const PollRate = 6000;
+const PollRate = 180000;
 
 var GlobalTime;
 var LastTime;
