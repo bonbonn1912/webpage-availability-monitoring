@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV === 'producton'){
+  require("@google-cloud/debug-agent").start({ allowExpressions: true });
+}
+
+
 var http = require("http");
 var https = require("https");
 
@@ -24,7 +29,7 @@ var URls = [
   "https://www.google.de",
   "https://www.bild.de",
   "https://www.dominikw.de/dqwdq.html",
- // "https://www.facebook.com",
+  // "https://www.facebook.com",
   "https://www.twitch.tv",
   "https://www.linkedin.com",
   "https://www.twitter.com",
@@ -70,64 +75,74 @@ io.on("connection", function (socket) {
     for (i = 0; i < URls.length; i++) {
       var index = i;
       var statusCode = URlStatus[i];
-    
-      color = setResponseColor(URlStatus[i])
+
+      color = setResponseColor(URlStatus[i]);
       index++;
       socket.emit("InitData", { statusCode, index, LastTime, color });
-     
     }
   });
 
-  
-
-
-setInterval(() => {
+  setInterval(() => {
     var i;
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
       var statusCode = URlStatus[i];
-      var color = setResponseColor(URlStatus[i])
+      var color = setResponseColor(URlStatus[i]);
       socket.emit("UpdateURL", { statusCode, index, GlobalTime, color });
-      
     }
   }, PollRate);
 });
 
-function setResponseColor(responseCode){
-var color;
-switch(responseCode){
-  case 200 : color = "green"
-  break;
-  case 201: color = "green"
-  break;
-  case 202 : color = "green"
-  break;
-  case 203 : color = "green"
-  break;
-  case 300 : color = "green"
-  break;
-  case 301 : color = "green"
-  break;
-  case 302 : color = "green"
-  break;
-  case 400 : color = "red"
-  break;
-  case 401: color = "red"
-  break;
-  case 402 : color = "red"
-  break;
-  case 403 : color = "red"
-  break;
-  case 404 : color = "red"
-  break;
-  case 500 : color = "red"
-  break;
-  case 501 : color = "red"
-  break;
-  case 502 : color = "red"
-  break;
-}
-return color; 
+function setResponseColor(responseCode) {
+  var color;
+  switch (responseCode) {
+    case 200:
+      color = "green";
+      break;
+    case 201:
+      color = "green";
+      break;
+    case 202:
+      color = "green";
+      break;
+    case 203:
+      color = "green";
+      break;
+    case 300:
+      color = "green";
+      break;
+    case 301:
+      color = "green";
+      break;
+    case 302:
+      color = "green";
+      break;
+    case 400:
+      color = "red";
+      break;
+    case 401:
+      color = "red";
+      break;
+    case 402:
+      color = "red";
+      break;
+    case 403:
+      color = "red";
+      break;
+    case 404:
+      color = "red";
+      break;
+    case 500:
+      color = "red";
+      break;
+    case 501:
+      color = "red";
+      break;
+    case 502:
+      color = "red";
+      break;
+  }
+  return color;
 }
 
 httpServer.listen(PORT, function () {
