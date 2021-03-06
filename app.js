@@ -6,13 +6,14 @@ var http = require("http");
 var https = require("https");
 
 var express = require("express");
+const { EEXIST } = require('constants');
 var app = express();
 var httpServer = http.createServer(app);
 
 var io = require("socket.io")(httpServer);
 
 const PORT = process.env.PORT || 8080;
-const PollRate = 60000;
+const PollRate = 5000;
 
 var GlobalTime;
 var LastTime;
@@ -43,6 +44,9 @@ setInterval(() => {
   URls.forEach((element) => {
     getResponseCode(element, URls.indexOf(element) + 1);
   });
+  var LoggingTest  = URlStatus;
+
+  
 }, PollRate);
 
 function getResponseCode(url, numberof) {
