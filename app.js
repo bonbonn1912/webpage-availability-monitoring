@@ -1,6 +1,5 @@
-if (process.env.NODE_ENV === 'producton'){
+
   require('@google-cloud/debug-agent').start({serviceContext: {enableCanary: true}});
-}
 
 
 var http = require("http");
