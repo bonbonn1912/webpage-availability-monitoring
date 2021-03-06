@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV === 'producton'){
-  require("@google-cloud/debug-agent").start({ allowExpressions: true });
+  require('@google-cloud/debug-agent').start({serviceContext: {enableCanary: true}});
 }
 
 
