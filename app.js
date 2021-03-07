@@ -1,5 +1,5 @@
 
-  require('@google-cloud/debug-agent').start({serviceContext: {enableCanary: true}});
+require('@google-cloud/debug-agent').start({serviceContext: {enableCanary: true}});
 
 
 var http = require("http");
@@ -12,8 +12,10 @@ var httpServer = http.createServer(app);
 
 var io = require("socket.io")(httpServer);
 
+var moment = require("moment");
+var timezone = require("moment-timezone");
 const PORT = process.env.PORT || 8080;
-const PollRate = 60000;
+const PollRate = 2000;
 
 var GlobalTime;
 var LastTime;
@@ -61,12 +63,8 @@ setInterval(() => {
 }, PollRate);
 
 function getTimeInHMS() {
-  var date = new Date();
-  var string = date.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
+ 
+  var string = moment.tz(Date.now(), "Europe/Paris").format("H:mm:ss")
   return string;
 }
 
