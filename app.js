@@ -15,7 +15,7 @@ var io = require("socket.io")(httpServer);
 var moment = require("moment");
 var timezone = require("moment-timezone");
 const PORT = process.env.PORT || 8080;
-const PollRate = 2000;
+const PollRate = 60000;
 
 var GlobalTime;
 var LastTime;
