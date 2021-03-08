@@ -15,7 +15,7 @@ var io = require("socket.io")(httpServer);
 var moment = require("moment");
 var timezone = require("moment-timezone");
 const PORT = process.env.PORT || 8080;
-const PollRate = 2000;
+const PollRate = 60000;
 
 var GlobalTime;
 var LastTime;
@@ -31,7 +31,7 @@ var URls = [
   "https://www.google.de",
   "https://www.bild.de",
  // "https://www.dominikw.de/dqwdq.html",
-  "https://www.facebdwqdook.com",
+  "https://www.facebook.com",
   "https://www.twitch.tv",
   "https://www.linkedin.com",
   "https://www.twitter.com",
@@ -102,54 +102,22 @@ io.on("connection", function (socket) {
 function setResponseColor(responseCode) {
   var color;
   if(responseCode != undefined){
-   
-  switch (responseCode) {
-    case 200:
+  var digit = responseCode.toString();
+  switch (digit[0]) {
+    case "2":
       color = "green";
-      break;
-    case 201:
-      color = "green";
-      break;
-    case 202:
-      color = "green";
-      break;
-    case 203:
-      color = "green";
-      break;
-    case 300:
-      color = "green";
-      break;
-    case 301:
-      color = "green";
-      break;
-    case 302:
-      color = "green";
-      break;
-    case 400:
-      color = "red";
-      break;
-    case 401:
-      color = "red";
-      break;
-    case 402:
-      color = "red";
-      break;
-    case 403:
-      color = "red";
-      break;
-    case 404:
-      color = "red";
-      break;
-    case 500:
-      color = "red";
-      break;
-    case 501:
-      color = "red";
-      break;
-    case 502:
-      color = "red";
       break;
    
+    case "3":
+      color = "green";
+      break;
+    case "4":
+      color = "red";
+      break;
+    case "5":
+      color = "red";
+      break;
+    
      default:
        color = "red";
 
