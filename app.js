@@ -15,7 +15,7 @@ var io = require("socket.io")(httpServer);
 var moment = require("moment");
 var timezone = require("moment-timezone");
 const PORT = process.env.PORT || 8080;
-const PollRate = 60000;
+const PollRate = 2000;
 
 var GlobalTime;
 var LastTime;
@@ -30,14 +30,14 @@ app.get("/", function (req, res) {
 var URls = [
   "https://www.google.de",
   "https://www.bild.de",
-  "https://www.dominikw.de/dqwdq.html",
-  // "https://www.facebook.com",
+ // "https://www.dominikw.de/dqwdq.html",
+  "https://www.facebdwqdook.com",
   "https://www.twitch.tv",
   "https://www.linkedin.com",
   "https://www.twitter.com",
   "https://www.instagram.com",
   "https://www.faceit.com",
-  "https://www.faz.net/aktuell/",
+ "https://www.faz.net/aktuell/",
 ];
 
 var URlStatus = [];
@@ -52,10 +52,15 @@ setInterval(() => {
 }, PollRate);
 
 function getResponseCode(url, numberof) {
-  https.get(url, function (res) {
-    URlStatus[numberof - 1] = res.statusCode;
-  });
-}
+  
+    
+    https.get(url, function (res) {
+      URlStatus[numberof - 1] = res.statusCode;
+    }).on("error", function(error){
+      URlStatus[numberof - 1] = "Server nicht erreichbar";
+    });
+  }
+
 
 setInterval(() => {
   GlobalTime = getTimeInHMS();
@@ -96,6 +101,8 @@ io.on("connection", function (socket) {
 
 function setResponseColor(responseCode) {
   var color;
+  if(responseCode != undefined){
+   
   switch (responseCode) {
     case 200:
       color = "green";
@@ -142,9 +149,15 @@ function setResponseColor(responseCode) {
     case 502:
       color = "red";
       break;
+   
+     default:
+       color = "red";
+
   }
   return color;
 }
+  }
+ 
 
 httpServer.listen(PORT, function () {
   console.log("Server listening on Port: " + PORT);

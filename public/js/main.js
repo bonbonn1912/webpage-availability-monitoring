@@ -31,12 +31,18 @@ socket.on("InitData", function({statusCode, index, LastTime, color}){
 
 function changeStatusCode(statusCode, index, GlobalTime,color){
     changeBoxColor(color,index)
-    TargetURL[index-1].innerHTML = "Statuscode: "+statusCode;
-    TargetTime[index-1].innerHTML = GlobalTime;
+    if(statusCode.length >3){
+        TargetURL[index-1].innerHTML = statusCode;
+        TargetTime[index-1].innerHTML = GlobalTime;
+    }else {
+        TargetURL[index-1].innerHTML = "Statuscode: "+statusCode;
+        TargetTime[index-1].innerHTML = GlobalTime;
+    }
+    
 }
 
 function changeBoxColor(color,index){
-     console.log("Index: "+index +" Farbe: "+color);
+    console.log("Index: "+index +" Farbe: "+color);
     TargetBox[index-1].style.backgroundColor = color;
 }
 console.log("Main.js geladen");
