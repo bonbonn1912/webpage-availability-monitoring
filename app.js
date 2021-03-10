@@ -28,6 +28,7 @@ app.get("/", function (req, res) {
 });
 
 var URls = [
+
   "https://www.deutsche-bank.de/marktdaten/maerkte/aktien.html/",
   "https://www.deutsche-bank.de/pk/finanzcheck.html",
   "https://www.deutsche-bank.de/ub.html",
