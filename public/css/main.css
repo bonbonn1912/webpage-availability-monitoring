@@ -1,22 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 
 body {
-  width: 99%;
-  height: 99%;
-  background: lightblue;
-
+ 
+  background: grey;
 }
 
 .wrapper {
   background: lightblue;
   width: 100%;
   height: 100%;
-  
- 
-}
+  }
 
 .content {
- 
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -25,20 +20,17 @@ body {
   height: 100%;
 }
 .footer {
-  
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   /* background-color: lightblue; */
   /* color: black; */
-  background-color: #527dff;
+  background-color: #0018a8;
   color: white;
   text-align: center;
   font-family: "Roboto", sans-serif;
 }
-
-
 
 #Box {
   background-color: gray;
@@ -87,7 +79,7 @@ body {
 .card{
   overflow: hidden;
   border-radius: 15px !important;
-  color: #527dff;
+  color: #0018a8;
   transform: translateY(-50px); 
   opacity: 0;
   animation: fade .5s ease-out forwards;
@@ -109,6 +101,7 @@ body {
 
 .card-body{
   position: relative;
+  
 }
 .top-line{
   width: 100%;
