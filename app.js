@@ -15,7 +15,7 @@ var io = require("socket.io")(httpServer);
 var moment = require("moment");
 var timezone = require("moment-timezone");
 const PORT = process.env.PORT || 8080;
-const PollRate = 60000;
+const PollRate = 5000;
 
 var GlobalTime;
 var LastTime;
@@ -28,17 +28,17 @@ app.get("/", function (req, res) {
 });
 
 var URls = [
-  "https://www.google.de",
-  "https://www.bild.de",
-  "https://www.domiddnikw.de/dqwdq.html",
- // "https://www.facebook.com",
-  "https://www.twitch.tv",
-  "https://www.linkedin.com",
-  "https://www.twitter.com",
-  "https://www.instagram.com",
-  "https://www.faceit.com",
- "https://www.faz.net/aktuell/",
+  "https://www.deutsche-bank.de/marktdaten/maerkte/aktien.html/",
+  "https://www.deutsche-bank.de/pk/finanzcheck.html",
+  "https://www.deutsche-bank.de/ub.html",
+  "https://www.deutsche-bank.de/pk/service-und-kontakt/service-ueberblick.html",
+  "https://www.deutsche-bank.de/pk/kredit-und-immobilien/kredit/privatkredit.html",
+  "https://www.deutsche-bank.de/pk/konto-und-karte/konten-im-ueberblick/konten-im-vergleich.html",
+  "https://www.deutsche-bank.de/pk/digital-banking/mobile-apps.html",
+  "https://www.deutsche-bank.de/pk/vorsorge/private-altersvorsorge.html",
+  "https://meine.deutsche-bank.de/trxm/db/",
 ];
+
 
 var URlStatus = [];
 
