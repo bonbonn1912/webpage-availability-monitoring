@@ -30,8 +30,8 @@ app.get("/", function (req, res) {
 var URls = [
   "https://www.google.de",
   "https://www.bild.de",
- // "https://www.dominikw.de/dqwdq.html",
-  "https://www.facebook.com",
+  "https://www.domiddnikw.de/dqwdq.html",
+ // "https://www.facebook.com",
   "https://www.twitch.tv",
   "https://www.linkedin.com",
   "https://www.twitter.com",

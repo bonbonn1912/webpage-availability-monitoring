@@ -25,12 +25,15 @@ body {
   height: 100%;
 }
 .footer {
+  
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: lightblue;
-  color: black;
+  /* background-color: lightblue; */
+  /* color: black; */
+  background-color: #527dff;
+  color: white;
   text-align: center;
   font-family: "Roboto", sans-serif;
 }
@@ -79,4 +82,56 @@ body {
   font-family: "Roboto", sans-serif;
   text-align: center;
   margin-top: -10px;
+}
+
+.card{
+  overflow: hidden;
+  border-radius: 15px !important;
+  color: #527dff;
+  transform: translateY(-50px); 
+  opacity: 0;
+  animation: fade .5s ease-out forwards;
+}
+.card-col:nth-child(1) .card{animation-delay: 0s;}
+.card-col:nth-child(2) .card{animation-delay: 0.1s;}
+.card-col:nth-child(3) .card{animation-delay: 0.2s;}
+.card-col:nth-child(4) .card{animation-delay: 0.3s;}
+.card-col:nth-child(5) .card{animation-delay: 0.4s;}
+.card-col:nth-child(6) .card{animation-delay: 0.5s;}
+.card-col:nth-child(7) .card{animation-delay: 0.6s;}
+.card-col:nth-child(8) .card{animation-delay: 0.7s;}
+.card-col:nth-child(9) .card{animation-delay: 0.8s;}
+
+@keyframes fade{
+  0%{transform: translateY(-50px); opacity: 0;}
+  100%{transform: translateY(0px); opacity: 1;}
+}
+
+.card-body{
+  position: relative;
+}
+.top-line{
+  width: 100%;
+  height: 8px;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  background-color: #5cea5c;
+  transform: translate(-50%, -50%);
+}
+
+.card-footer{
+  background-color: white;
+  min-height: 70px;
+  transition: .6s ease-out;
+  animation: pulse .5s ease-out infinite;
+}
+.done{
+  animation: none;
+}
+
+@keyframes pulse{
+  0%{opacity: .8;}
+  50%{opacity: 1;}
+  100%{opacity: .8;}
 }
