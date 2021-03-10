@@ -124,7 +124,7 @@ body {
   background-color: white;
   min-height: 70px;
   transition: .6s ease-out;
-  animation: pulse .5s ease-out infinite;
+  animation: pulse 1.5s ease-out infinite;
 }
 .done{
   animation: none;
