@@ -7,6 +7,11 @@ var https = require("https");
 
 var express = require("express");
 const { EEXIST } = require('constants');
+
+const bunyan = require('bunyan');
+const {LoggingBunyan} = require('@google-cloud/logging-bunyan');
+const loggingBunyan = new LoggingBunyan();
+
 var app = express();
 var httpServer = http.createServer(app);
 
@@ -27,6 +32,18 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
+const logger = bunyan.createLogger({
+  // The JSON payload of the log as it appears in Cloud Logging
+  // will contain "name": "my-service"
+  name: 'my-service',
+  streams: [
+    // Log to the console at 'info' and above
+    {stream: process.stdout, level: 'info'},
+    // And log to Cloud Logging, logging at 'info' and above
+    loggingBunyan.stream('info'),
+  ],
+});
+
 var URls = [
 
   "https://www.deutsche-bank.de/marktdaten/maerkte/aktien.html/",
@@ -39,6 +56,8 @@ var URls = [
   "https://www.deutsche-bank.de/pk/vorsorge/private-altersvorsorge.html",
   "https://meine.deutsche-bank.de/trxm/db/",
 ];
+
+
 
 
 var URlStatus = [];
@@ -90,6 +109,9 @@ io.on("connection", function (socket) {
   });
 
   setInterval(() => {
+      // Writes some log entries
+    logger.error('Is this Working');
+    logger.info('Logging');
     var i;
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
