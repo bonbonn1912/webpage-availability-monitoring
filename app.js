@@ -110,8 +110,8 @@ io.on("connection", function (socket) {
 
   setInterval(() => {
       // Writes some log entries
-    logger.error('Is this Working');
-    logger.info('Logging');
+   // logger.error('Is this Working');
+  //  logger.info('Logging');
     var i;
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
