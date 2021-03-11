@@ -56,7 +56,8 @@ var URls = [
   "https://www.deutsche-bank.de/pk/konto-und-karte/konten-im-ueberblick/konten-im-vergleich.html",
   "https://www.deutsche-bank.de/pk/digital-banking/mobile-apps.html",
   "https://www.deutsche-bank.de/pk/vorsorge/private-altersvorsorge.html",
-  "https://meine.deutsche-bank.de/trxm/db/",
+ // "https://meine.deutsche-bank.de/trxm/db/",
+ "https://www.dominikw.de/ichbinvorhanden.html",
  // "https://deutsche-bank.mitarbeiterangebote.de/login"
 ];
 
