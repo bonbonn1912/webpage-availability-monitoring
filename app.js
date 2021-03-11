@@ -1,5 +1,5 @@
 
-require('@google-cloud/debug-agent').start({serviceContext: {enableCanary: true}});
+require('@google-cloud/debug-agent').start({allowExpressions: true},{serviceContext: {enableCanary: true}});
 
 
 var http = require("http");
