@@ -38,10 +38,12 @@ const logger = bunyan.createLogger({
   name: 'my-service',
   streams: [
     // Log to the console at 'info' and above
-    {stream: process.stdout, level: 'info'},
+    {stream: process.stdout, level: 'info', test: "hi"},
     // And log to Cloud Logging, logging at 'info' and above
     loggingBunyan.stream('info'),
   ],
+  
+  
 });
 
 var URls = [
@@ -55,6 +57,7 @@ var URls = [
   "https://www.deutsche-bank.de/pk/digital-banking/mobile-apps.html",
   "https://www.deutsche-bank.de/pk/vorsorge/private-altersvorsorge.html",
   "https://meine.deutsche-bank.de/trxm/db/",
+ // "https://deutsche-bank.mitarbeiterangebote.de/login"
 ];
 
 
@@ -76,6 +79,7 @@ function getResponseCode(url, numberof) {
     
     https.get(url, function (res) {
       URlStatus[numberof - 1] = res.statusCode;
+      
     }).on("error", function(error){
       URlStatus[numberof - 1] = "Server nicht erreichbar";
     });
@@ -109,18 +113,31 @@ io.on("connection", function (socket) {
   });
 
   setInterval(() => {
-      // Writes some log entries
-    logger.error('Is this Working');
-    logger.info('Logging');
     var i;
     for (i = 0; i < URls.length; i++) {
       var index = i + 1;
       var statusCode = URlStatus[i];
+       createLog(statusCode, index)
       var color = setResponseColor(URlStatus[i]);
       socket.emit("UpdateURL", { statusCode, index, GlobalTime, color });
     }
+    console.log("________________")
   }, PollRate);
 });
+
+function createLog(statusCode, index){
+  const validStatusCodes =[200,201,202,203,204,205,206,207,208,226,300,301,302,303,304,305,306,307,308]
+  const clientErrors = [400,401,402,403,404,405,406,407,408]
+ // console.log("Statuscode: " +statusCode +" an stelle: " +index + " Für die URL : " + URls[index-1])
+  if(validStatusCodes.includes(statusCode)){
+    logger.info("Code  enthalten von URL "+URls[index-1]+ "Statuscode: " +statusCode);
+    
+  }else if(clientErrors.includes(statusCode)){
+    logger.error(statusCode);
+  }
+  
+  
+}
 
 function setResponseColor(responseCode) {
   var color;
