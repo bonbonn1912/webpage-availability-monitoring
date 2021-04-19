@@ -7,6 +7,6 @@ automatic_scaling:
   max_num_instances: 2
   
 network:
-    instance_tag: ihk_network
-    name: ihk_projekt
+    instance_tag: ihknetwork
+    name: ihkprojekt
 
