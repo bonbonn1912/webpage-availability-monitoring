@@ -7,6 +7,5 @@ automatic_scaling:
   max_num_instances: 2
   
 network:
-    instance_tag: ihknetwork
-    name: ihkprojekt
+  session_affinity: true
 
