@@ -122,7 +122,6 @@ io.on("connection", function (socket) {
       var color = setResponseColor(URlStatus[i]);
       socket.emit("UpdateURL", { statusCode, index, GlobalTime, color });
     }
-    console.log("________________")
   }, PollRate);
 });
 
