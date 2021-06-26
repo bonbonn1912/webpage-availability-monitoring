@@ -1,2 +1,2 @@
 # webpage-availability-monitoring
-IHK-Abschlussprojekt
+IHK-Abschlussprojekt Sommer2021 by Dominik Wolf
