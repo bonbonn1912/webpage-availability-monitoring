@@ -45,6 +45,12 @@ function setTime(statuscodes) {
   var hours = new Date().getHours();
   var minutes = new Date().getMinutes();
   var seconds = new Date().getSeconds();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes
+  }
   if (seconds < 10) {
     seconds = "0" + seconds;
   }
