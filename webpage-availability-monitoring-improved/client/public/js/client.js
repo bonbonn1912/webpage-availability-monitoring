@@ -3,6 +3,12 @@ var TargetURL = document.querySelectorAll(".statusMessage");
 const TargetTime = document.querySelectorAll(".timeMessage");
 const TargetBox = document.querySelectorAll("#Box");
 
+$.get("/api/getresponsecodes", (data) => {
+  setStatuscode(data);
+  setTime(data);
+  setColor(data);
+});
+
 setInterval(() => {
   console.log("api angefragt");
   $.get("/api/getresponsecodes", (data) => {

@@ -12,7 +12,7 @@ async function startPolling() {
     data.url.forEach((url, index) => {
       getResponseCode(url, index);
     });
-  }, 5000);
+  }, 120000);
 }
 
 function getResponseCode(url, numberof) {
