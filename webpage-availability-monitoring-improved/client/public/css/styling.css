@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+body {
+ 
+  background: grey;
+}
+
+.wrapper {
+  background: lightblue;
+  width: 100%;
+  height: 100%;
+  }
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* background-color: lightblue; */
+  /* color: black; */
+  background-color: #0018a8;
+  color: white;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+#Box {
+  background-color: gray;
+}
+
+.boxes {
+  font-family: "Roboto", sans-serif;
+  font-size: 35px;
+  color: white;
+  width: 200px;
+  height: 120px;
+  background-color: green;
+  border-top-right-radius: 7%;
+  border-top-left-radius: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-frame {
+  filter: drop-shadow(10px 4px 10px gray);
+  margin-top: 80px;
+  margin-right: 40px;
+  margin-left: 40px;
+  flex-direction: column;
+  width: 200px;
+  height: 180px;
+  background-color: gray;
+  border-radius: 5%;
+}
+
+.statusMessage {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: white;
+  margin-top: 7px;
+}
+
+.timeMessage {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin-top: -10px;
+}
+
+.card{
+  overflow: hidden;
+  border-radius: 15px !important;
+  color: #0018a8;
+  transform: translateY(-50px); 
+  opacity: 0;
+  animation: fade .5s ease-out forwards;
+}
+.card-col:nth-child(1) .card{animation-delay: 0s;}
+.card-col:nth-child(2) .card{animation-delay: 0.1s;}
+.card-col:nth-child(3) .card{animation-delay: 0.2s;}
+.card-col:nth-child(4) .card{animation-delay: 0.3s;}
+.card-col:nth-child(5) .card{animation-delay: 0.4s;}
+.card-col:nth-child(6) .card{animation-delay: 0.5s;}
+.card-col:nth-child(7) .card{animation-delay: 0.6s;}
+.card-col:nth-child(8) .card{animation-delay: 0.7s;}
+.card-col:nth-child(9) .card{animation-delay: 0.8s;}
+
+@keyframes fade{
+  0%{transform: translateY(-50px); opacity: 0;}
+  100%{transform: translateY(0px); opacity: 1;}
+}
+
+.card-body{
+  position: relative;
+  
+}
+.top-line{
+  width: 100%;
+  height: 8px;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  background-color: #5cea5c;
+  transform: translate(-50%, -50%);
+}
+
+.card-footer{
+  background-color: white;
+  min-height: 70px;
+  transition: .6s ease-out;
+  animation: pulse 1.5s ease-out infinite;
+}
+.done{
+  animation: none;
+}
+
+@keyframes pulse{
+  0%{opacity: .8;}
+  50%{opacity: 1;}
+  100%{opacity: .8;}
+}
